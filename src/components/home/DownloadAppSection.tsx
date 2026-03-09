@@ -8,16 +8,16 @@ function AppleStoreBadge() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "250px",
-        height: "84px",
+        width: "190px",
+        height: "64px",
         background: "#000",
-        borderRadius: "14px",
+        borderRadius: "12px",
         textDecoration: "none",
-        gap: "12px",
+        gap: "10px",
         flexShrink: 0,
       }}
     >
-      <svg width="36" height="44" viewBox="0 0 36 44" fill="none">
+      <svg width="28" height="34" viewBox="0 0 36 44" fill="none">
         <path
           d="M29.9 23.3c0-5.3 4.3-7.8 4.5-7.9-2.4-3.6-6.2-4-7.6-4.1-3.2-.3-6.3 1.9-7.9 1.9-1.6 0-4.1-1.9-6.8-1.8-3.5.1-6.7 2-8.5 5.1C-.6 22.8 1.6 32 5.2 37.1c1.8 2.6 3.9 5.4 6.7 5.3 2.7-.1 3.7-1.7 7-1.7 3.2 0 4.1 1.7 6.9 1.6 2.9-.1 4.7-2.6 6.5-5.2 2-2.9 2.9-5.8 2.9-5.9-.1-.1-5.3-2-5.3-8z"
           fill="#fff"
@@ -31,7 +31,7 @@ function AppleStoreBadge() {
         <span
           style={{
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "11px",
+            fontSize: "9px",
             color: "#fff",
             opacity: 0.8,
           }}
@@ -42,9 +42,9 @@ function AppleStoreBadge() {
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 600,
-            fontSize: "22px",
+            fontSize: "17px",
             color: "#fff",
-            lineHeight: "26px",
+            lineHeight: "20px",
           }}
         >
           App Store
@@ -62,16 +62,16 @@ function PlayStoreBadge() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "271px",
-        height: "84px",
+        width: "200px",
+        height: "64px",
         background: "#000",
-        borderRadius: "14px",
+        borderRadius: "12px",
         textDecoration: "none",
-        gap: "12px",
+        gap: "10px",
         flexShrink: 0,
       }}
     >
-      <svg width="36" height="40" viewBox="0 0 36 40" fill="none">
+      <svg width="28" height="32" viewBox="0 0 36 40" fill="none">
         <path d="M1 1.5L20.5 21 1 40.5V1.5z" fill="#32BBFF" />
         <path d="M1 1.5l26 13.2L20.5 21 1 1.5z" fill="#32BBFF" />
         <path d="M27 14.7L1 1.5l19.5 19.5L27 14.7z" fill="#32BBFF" opacity="0.7" />
@@ -84,7 +84,7 @@ function PlayStoreBadge() {
         <span
           style={{
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "11px",
+            fontSize: "9px",
             color: "#fff",
             opacity: 0.8,
           }}
@@ -95,9 +95,9 @@ function PlayStoreBadge() {
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 600,
-            fontSize: "22px",
+            fontSize: "17px",
             color: "#fff",
-            lineHeight: "26px",
+            lineHeight: "20px",
           }}
         >
           Google Play

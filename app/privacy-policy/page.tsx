@@ -9,8 +9,8 @@ const S: Record<string, React.CSSProperties> = {
     fontFamily: "'Poppins', sans-serif",
     fontStyle: "normal",
     fontWeight: 700,
-    fontSize: "32px",
-    lineHeight: "38px",
+    fontSize: "20px",
+    lineHeight: "28px",
     textAlign: "justify",
     color: "#82131B",
     alignSelf: "stretch",
@@ -20,8 +20,8 @@ const S: Record<string, React.CSSProperties> = {
     fontFamily: "'Poppins', sans-serif",
     fontStyle: "normal",
     fontWeight: 400,
-    fontSize: "24px",
-    lineHeight: "36px",
+    fontSize: "15px",
+    lineHeight: "24px",
     textAlign: "justify",
     color: "#585858",
     alignSelf: "stretch",
@@ -43,11 +43,11 @@ export default function PrivacyPolicyPage() {
             flexDirection: "column",
             alignItems: "center",
             padding: "0px",
-            gap: "60px",
-            maxWidth: "1320px",
+            gap: "32px",
+            maxWidth: "900px",
             width: "100%",
             margin: "0 auto",
-            paddingTop: "64px",
+            paddingTop: "40px",
             paddingLeft: "16px",
             paddingRight: "16px",
           }}
@@ -66,8 +66,8 @@ export default function PrivacyPolicyPage() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
-                fontSize: "64px",
-                lineHeight: "68px",
+                fontSize: "36px",
+                lineHeight: "44px",
                 textAlign: "center",
                 color: "#000000",
                 margin: 0,
@@ -79,8 +79,8 @@ export default function PrivacyPolicyPage() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 400,
-                fontSize: "22px",
-                lineHeight: "33px",
+                fontSize: "15px",
+                lineHeight: "22px",
                 textAlign: "center",
                 color: "#212325",
                 margin: 0,
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "64px",
+              gap: "32px",
               width: "100%",
             }}
           >
@@ -121,8 +121,8 @@ export default function PrivacyPolicyPage() {
                     style={{
                       fontFamily: "'Poppins', sans-serif",
                       fontWeight: 700,
-                      fontSize: "24px",
-                      lineHeight: "38px",
+                      fontSize: "14px",
+                      lineHeight: "22px",
                       color: "#585858",
                     }}
                   >
@@ -132,8 +132,8 @@ export default function PrivacyPolicyPage() {
                     style={{
                       fontFamily: "'Poppins', sans-serif",
                       fontWeight: 700,
-                      fontSize: "24px",
-                      lineHeight: "38px",
+                      fontSize: "14px",
+                      lineHeight: "22px",
                       color: "#585858",
                     }}
                   >
@@ -143,8 +143,8 @@ export default function PrivacyPolicyPage() {
                     style={{
                       fontFamily: "'Poppins', sans-serif",
                       fontWeight: 500,
-                      fontSize: "24px",
-                      lineHeight: "38px",
+                      fontSize: "14px",
+                      lineHeight: "22px",
                       color: "#585858",
                     }}
                   >
@@ -160,7 +160,7 @@ export default function PrivacyPolicyPage() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                gap: "40px",
+                gap: "24px",
                 width: "100%",
               }}
             >
@@ -339,7 +339,7 @@ export default function PrivacyPolicyPage() {
                     style={{
                       fontFamily: "'Poppins', sans-serif",
                       fontWeight: 500,
-                      fontSize: "28px",
+                      fontSize: "18px",
                       lineHeight: "38px",
                       color: "#585858",
                       textDecoration: "none",
@@ -383,7 +383,7 @@ export default function PrivacyPolicyPage() {
                     style={{
                       fontFamily: "'Poppins', sans-serif",
                       fontWeight: 500,
-                      fontSize: "28px",
+                      fontSize: "18px",
                       lineHeight: "38px",
                       color: "#585858",
                       textDecoration: "none",

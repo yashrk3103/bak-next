@@ -10,9 +10,9 @@ export default function WhatsAppButton() {
       aria-label="Chat on WhatsApp"
       className="fixed z-50"
       style={{
-        width: "100px",
-        height: "100px",
-        bottom: "40px",
+        width: "50px",
+        height: "50px",
+        bottom: "30px",
         right: "40px",
       }}
     >

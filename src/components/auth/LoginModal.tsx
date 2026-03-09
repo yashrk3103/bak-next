@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -10,108 +10,38 @@ interface LoginModalProps {
 const PHONE_REGEX = /^(\+91[6-9][0-9]{9}|[6-9][0-9]{9})$/;
 
 export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
-  const [step, setStep] = useState<"phone" | "otp">("phone");
+  const [step, setStep] = useState<"phone" | "success">("phone");
   const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [devOtp, setDevOtp] = useState("");
-  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const isSuccessStep = step === "success";
 
   if (!isOpen) return null;
-
-  const handleOtpChange = (index: number, value: string) => {
-    if (!/^\d?$/.test(value)) return;
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-    setError("");
-    if (value && index < 5) {
-      otpRefs.current[index + 1]?.focus();
-    }
-  };
-
-  const handleOtpKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      otpRefs.current[index - 1]?.focus();
-    }
-  };
 
   const handleClose = () => {
     setStep("phone");
     setPhone("");
-    setOtp(["", "", "", "", "", ""]);
     setError("");
-    setDevOtp("");
+    setLoading(false);
     onClose();
   };
 
-  const handleSendOtp = async () => {
+  const handleContinue = async () => {
     const cleaned = phone.trim().replace(/\s|-/g, "");
     if (!PHONE_REGEX.test(cleaned)) {
       setError("Enter a valid Indian mobile number (e.g. 9876543210 or +919876543210).");
       return;
     }
+
+    setPhone(cleaned);
     setError("");
     setLoading(true);
-    try {
-      const res = await fetch("/api/auth/send-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: cleaned }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Failed to send OTP. Please try again.");
-        return;
-      }
-      // Dev mode: server returns the OTP so you can test without SMS
-      if (data.devOtp) setDevOtp(data.devOtp);
-      setStep("otp");
-    } catch {
-      setError("Network error. Please check your connection.");
-    } finally {
+    // Keep the two-step login UI without any OTP or backend dependency.
+    window.setTimeout(() => {
       setLoading(false);
-    }
+      setStep("success");
+    }, 250);
   };
-
-  const handleVerifyOtp = async () => {
-    const enteredOtp = otp.join("");
-    if (enteredOtp.length < 6) {
-      setError("Please enter the complete 6-digit OTP.");
-      return;
-    }
-    const cleaned = phone.trim().replace(/\s|-/g, "");
-    setError("");
-    setLoading(true);
-    try {
-      const res = await fetch("/api/auth/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: cleaned, otp: enteredOtp }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Verification failed. Please try again.");
-        return;
-      }
-      // OTP verified — close modal and proceed
-      handleClose();
-    } catch {
-      setError("Network error. Please check your connection.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleResend = async () => {
-    setOtp(["", "", "", "", "", ""]);
-    setDevOtp("");
-    setError("");
-    await handleSendOtp();
-  };
-
-  const modalHeight = step === "phone" ? "359.93px" : "497.93px";
 
   return (
     <>
@@ -138,13 +68,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "30.8726px",
-          gap: "59.17px",
-          isolation: "isolate",
-          width: "473.75px",
-          height: modalHeight,
+          alignItems: "stretch",
+          padding: "32px 24px 28px",
+          gap: "24px",
+          width: "min(520px, calc(100vw - 24px))",
+          maxHeight: "calc(100vh - 24px)",
+          overflowY: "auto",
           background: "#FFFFFF",
           boxShadow: "4px 4px 20px rgba(172, 2, 2, 0.4)",
           borderRadius: "32px",
@@ -156,8 +85,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           aria-label="Close"
           style={{
             position: "absolute",
-            left: "431px",
-            top: "18.91px",
+            right: "24px",
+            top: "24px",
             width: "24px",
             height: "24px",
             background: "none",
@@ -184,8 +113,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             flexDirection: "column",
             alignItems: "center",
             padding: 0,
-            gap: "32px",
-            width: "412px",
+            gap: "24px",
+            width: "100%",
+            paddingTop: "4px",
           }}
         >
           {/* Title */}
@@ -194,11 +124,11 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 600,
               fontSize: "36px",
-              lineHeight: "54px",
+              lineHeight: "1.15",
               textAlign: "center",
               color: "#484C52",
-              width: "98px",
-              height: "54px",
+              width: "100%",
+              marginTop: 0,
             }}
           >
             Login
@@ -211,8 +141,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               flexDirection: "column",
               alignItems: "center",
               padding: 0,
-              gap: "28px",
-              width: "412px",
+              gap: "24px",
+              width: "100%",
             }}
           >
             {/* Input fields section */}
@@ -220,10 +150,10 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-end",
+                alignItems: "stretch",
                 padding: 0,
                 gap: "16px",
-                width: "412px",
+                width: "100%",
               }}
             >
               {/* Mobile No field */}
@@ -233,8 +163,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                   flexDirection: "column",
                   alignItems: "flex-start",
                   padding: 0,
-                  gap: "11.18px",
-                  width: "412px",
+                  gap: "10px",
+                  width: "100%",
                 }}
               >
                 <label
@@ -259,9 +189,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
-                    padding: "0 29.816px",
-                    gap: "18.64px",
-                    width: "412px",
+                    padding: "0 24px",
+                    gap: "18px",
+                    width: "100%",
                     height: "56px",
                     background: "#FFFFFF",
                     border: "1.8635px solid #D8DADC",
@@ -276,108 +206,66 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 />
               </div>
 
-              {/* OTP section — only shown in step 2 */}
-              {step === "otp" && (
+              {/* Confirmation section — shown in step 2 */}
+              {step === "success" && (
                 <>
-                  {/* OTP label */}
-                  <label
-                    style={{
-                      alignSelf: "flex-start",
-                      fontFamily: "'Fredoka One', cursive",
-                      fontWeight: 400,
-                      fontSize: "14px",
-                      lineHeight: "125%",
-                      color: "#000000",
-                      width: "412px",
-                      height: "18px",
-                    }}
-                  >
-                    OTP
-                  </label>
-
-                  {/* 6 OTP boxes */}
                   <div
                     style={{
+                      boxSizing: "border-box",
+                      width: "100%",
+                      padding: "20px 18px",
+                      borderRadius: "16px",
+                      background: "#FFF6F6",
+                      border: "1px solid #F6CACA",
                       display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: 0,
-                      gap: "24px",
-                      width: "412px",
-                      height: "56px",
+                      flexDirection: "column",
+                      gap: "10px",
                     }}
                   >
-                    {otp.map((digit, i) => (
-                      <input
-                        key={i}
-                        id={`otp-${i}`}
-                        ref={(el) => { otpRefs.current[i] = el; }}
-                        type="text"
-                        inputMode="numeric"
-                        maxLength={1}
-                        value={digit}
-                        onChange={(e) => handleOtpChange(i, e.target.value)}
-                        onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                        style={{
-                          boxSizing: "border-box",
-                          width: "60px",
-                          height: "56px",
-                          background: "#FFFFFF",
-                          border: "1px solid #E9E8E8",
-                          borderRadius: "4px",
-                          textAlign: "center",
-                          fontFamily: "'Poppins', sans-serif",
-                          fontWeight: 400,
-                          fontSize: "24px",
-                          lineHeight: "16px",
-                          letterSpacing: "-0.02em",
-                          color: "#000000",
-                          outline: "none",
-                          flexShrink: 0,
-                        }}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Dev-mode OTP hint */}
-                  {devOtp && (
-                    <div
+                    <span
                       style={{
-                        width: "412px",
-                        padding: "8px 12px",
-                        background: "#FFF3CD",
-                        border: "1px solid #FFC107",
-                        borderRadius: "6px",
                         fontFamily: "'Poppins', sans-serif",
-                        fontSize: "13px",
-                        color: "#856404",
+                        fontWeight: 600,
+                        fontSize: "20px",
+                        lineHeight: "30px",
+                        color: "#484C52",
                       }}
                     >
-                      <strong>Dev mode:</strong> Your OTP is <strong>{devOtp}</strong>
-                    </div>
-                  )}
+                      Login details saved
+                    </span>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontFamily: "'Poppins', sans-serif",
+                        fontWeight: 400,
+                        fontSize: "14px",
+                        lineHeight: "22px",
+                        color: "#5F5E5E",
+                      }}
+                    >
+                      You can continue using <strong>{phone}</strong> as the login number. {" "}
+                      OTP generation has been removed from this flow.
+                    </p>
+                  </div>
 
-                  {/* Resend OTP */}
                   <button
-                    onClick={handleResend}
-                    disabled={loading}
+                    onClick={() => setStep("phone")}
                     style={{
-                      width: "412px",
+                      width: "100%",
                       fontFamily: "'Poppins', sans-serif",
                       fontWeight: 400,
-                      fontSize: "12px",
+                      fontSize: "13px",
                       lineHeight: "16px",
                       textAlign: "right",
                       letterSpacing: "-0.2px",
-                      color: loading ? "#C0C0C0" : "#949CAB",
-                      cursor: loading ? "not-allowed" : "pointer",
+                      color: "#949CAB",
+                      cursor: "pointer",
                       background: "none",
                       border: "none",
                       padding: 0,
                     }}
                   >
-                    Resend OTP
+                    Edit mobile number
                   </button>
                 </>
               )}
@@ -386,7 +274,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
               {error && (
                 <p
                   style={{
-                    width: "412px",
+                    width: "100%",
                     margin: 0,
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: "13px",
@@ -402,7 +290,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
             {/* CTA button */}
             <button
-              onClick={step === "phone" ? handleSendOtp : handleVerifyOtp}
+              onClick={step === "phone" ? handleContinue : handleClose}
               disabled={loading}
               style={{
                 display: "flex",
@@ -411,7 +299,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 alignItems: "center",
                 padding: "14px 0px",
                 gap: "10px",
-                width: "264px",
+                width: isSuccessStep ? "264px" : "100%",
+                maxWidth: "264px",
                 height: "52px",
                 background: loading ? "#F87878" : "#ED0213",
                 borderRadius: "24px",
@@ -431,15 +320,16 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 }}
               >
                 {loading
-                  ? step === "phone" ? "Sending…" : "Verifying…"
-                  : step === "phone" ? "Proceed via OTP" : "Confirm OTP"}
+                  ? "Continuing..."
+                  : step === "phone" ? "Continue Login" : "Done"}
               </span>
             </button>
 
             {/* Terms */}
             <span
               style={{
-                width: "352px",
+                width: "100%",
+                maxWidth: "352px",
                 fontFamily: "'Fredoka', cursive",
                 fontWeight: 400,
                 fontSize: "15.7276px",
@@ -447,6 +337,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 textAlign: "center",
                 letterSpacing: "-0.262127px",
                 color: "#5F5E5E",
+                display: "block",
+                margin: "0 auto",
               }}
             >
               By signing in you agree to our{" "}

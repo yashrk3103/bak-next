@@ -5,7 +5,7 @@ export default function Footer() {
     <footer
       style={{
         background: "linear-gradient(180deg, #E5E5E5 0%, #C67C7C 100%)",
-        padding: "44px 12px",
+        padding: "16px 12px",
         width: "100%",
       }}
     >
@@ -16,7 +16,7 @@ export default function Footer() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "36px",
+          gap: "16px",
         }}
       >
         {/* Top row */}
@@ -28,7 +28,7 @@ export default function Footer() {
             alignItems: "flex-start",
             padding: "0 40px",
             width: "100%",
-            gap: "40px",
+            gap: "24px",
           }}
         >
           {/* Logo + download */}
@@ -38,7 +38,7 @@ export default function Footer() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "flex-start",
-              gap: "12px",
+              gap: "8px",
               flexShrink: 0,
               width: "354px",
             }}
@@ -48,7 +48,7 @@ export default function Footer() {
               alt="Zirwa Qurbani Service"
               width={354}
               height={180}
-              style={{ width: "354px", height: "auto" }}
+              style={{ width: "180px", height: "auto" }}
             />
 
             {/* Download the app */}
@@ -56,11 +56,11 @@ export default function Footer() {
               <Image
                 src="/images/DOWNLAOD THE APP GRP.png"
                 alt="Download on App Store and Google Play"
-                width={355}
-                height={52}
-                style={{ width: "354px", height: "auto", display: "block" }}
+                width={200}
+                height={42}
+                style={{ width: "200px", height: "auto", display: "block" }}
               />
-              {/* App Store clickable overlay (left ~51px icon area) */}
+              {/* App Store clickandable overlay (left ~51px icon area) */}
               <a
                 href="#"
                 aria-label="Download on the App Store"
@@ -94,7 +94,7 @@ export default function Footer() {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
-              gap: "24px",
+              gap: "12px",
               width: "240px",
               flexShrink: 0,
             }}
@@ -103,8 +103,8 @@ export default function Footer() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
-                fontSize: "24px",
-                lineHeight: "36px",
+                fontSize: "18px",
+                lineHeight: "24px",
                 color: "#670004",
                 margin: 0,
               }}
@@ -116,7 +116,7 @@ export default function Footer() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                gap: "16px",
+                gap: "8px",
               }}
             >
               {["Terms of Use", "Privacy Policy", "FAQs"].map((item) => (
@@ -126,8 +126,8 @@ export default function Footer() {
                   style={{
                     fontFamily: "'Fredoka', sans-serif",
                     fontWeight: 400,
-                    fontSize: "20px",
-                    lineHeight: "24px",
+                    fontSize: "15px",
+                    lineHeight: "20px",
                     color: "#000000",
                     textDecoration: "none",
                   }}
@@ -144,7 +144,7 @@ export default function Footer() {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
-              gap: "24px",
+              gap: "12px",
               width: "287px",
               flexShrink: 0,
             }}
@@ -153,8 +153,8 @@ export default function Footer() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
-                fontSize: "24px",
-                lineHeight: "36px",
+                fontSize: "18px",
+                lineHeight: "24px",
                 color: "#670004",
                 margin: 0,
               }}
@@ -177,7 +177,7 @@ export default function Footer() {
                     fill="#670004"
                   />
                 </svg>
-                <span style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 400, fontSize: "20px", lineHeight: "100%", color: "#000" }}>
+                <span style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: "100%", color: "#000" }}>
                   +91 7829916082
                 </span>
               </div>
@@ -190,7 +190,7 @@ export default function Footer() {
                     fill="#670004"
                   />
                 </svg>
-                <span style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 400, fontSize: "20px", lineHeight: "24px", color: "#000" }}>
+                <span style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: "20px", color: "#000" }}>
                   mdkaleem@zirwafoods.com
                 </span>
               </div>
@@ -203,7 +203,7 @@ export default function Footer() {
                     fill="#670004"
                   />
                 </svg>
-                <span style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 400, fontSize: "20px", lineHeight: "24px", color: "#000" }}>
+                <span style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: "20px", color: "#000" }}>
                   #17, 2nd floor II stage, Indiranagar, Bengaluru, Karnataka - 560038.
                 </span>
               </div>
@@ -217,7 +217,7 @@ export default function Footer() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "12px",
+            gap: "8px",
             width: "100%",
             padding: "0 40px",
             boxSizing: "border-box",
@@ -228,8 +228,8 @@ export default function Footer() {
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 500,
-              fontSize: "16px",
-              lineHeight: "20px",
+              fontSize: "13px",
+              lineHeight: "18px",
               color: "#670004",
               textAlign: "center",
               margin: 0,

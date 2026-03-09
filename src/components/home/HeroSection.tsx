@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import OrderPanel from "@/components/order/OrderPanel";
 
 export default function HeroSection() {
+  const [showOrder, setShowOrder] = useState(false);
+
   return (
     <section
       className="relative w-full flex items-center justify-center overflow-hidden"
@@ -82,13 +87,15 @@ export default function HeroSection() {
         </div>
 
         {/* CTA button — Component 29 */}
-        <Link
-          href="/order"
+        <button
+          type="button"
+          onClick={() => setShowOrder(true)}
           className="inline-flex items-center bg-white rounded-full"
           style={{
             padding: "clamp(4px,0.4vw,5px) clamp(5px,0.5vw,7px) clamp(4px,0.4vw,5px) clamp(14px,1.5vw,21px)",
             gap: "clamp(16px,1.8vw,24px)",
-            textDecoration: "none",
+            border: "none",
+            cursor: "pointer",
             height: "clamp(48px,4.5vw,56px)",
           }}
         >
@@ -127,8 +134,11 @@ export default function HeroSection() {
               />
             </svg>
           </span>
-        </Link>
+        </button>
       </div>
+
+      {/* Order Panel overlay */}
+      <OrderPanel isOpen={showOrder} onClose={() => setShowOrder(false)} />
     </section>
   );
 }

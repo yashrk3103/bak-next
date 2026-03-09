@@ -11,8 +11,8 @@ const S: Record<string, React.CSSProperties> = {
     fontFamily: "'Poppins', sans-serif",
     fontStyle: "normal",
     fontWeight: 700,
-    fontSize: "32px",
-    lineHeight: "38px",
+    fontSize: "20px",
+    lineHeight: "28px",
     textAlign: "justify",
     color: "#82131B",
     alignSelf: "stretch",
@@ -22,8 +22,8 @@ const S: Record<string, React.CSSProperties> = {
     fontFamily: "'Poppins', sans-serif",
     fontStyle: "normal",
     fontWeight: 400,
-    fontSize: "24px",
-    lineHeight: "36px",
+    fontSize: "15px",
+    lineHeight: "24px",
     textAlign: "justify",
     color: "#585858",
     alignSelf: "stretch",
@@ -47,10 +47,11 @@ export default function TermsPage() {
             flexDirection: "column",
             alignItems: "center",
             padding: "0px",
-            gap: "64px",
-            width: "1320px",
+            gap: "32px",
+            maxWidth: "900px",
+            width: "100%",
             margin: "0 auto",
-            paddingTop: "64px",
+            paddingTop: "40px",
           }}
         >
           {/* Heading row — Frame 1410102218 */}
@@ -72,8 +73,8 @@ export default function TermsPage() {
                 fontFamily: "'Poppins', sans-serif",
                 fontStyle: "normal",
                 fontWeight: 600,
-                fontSize: "64px",
-                lineHeight: "68px",
+                fontSize: "36px",
+                lineHeight: "44px",
                 display: "flex",
                 alignItems: "center",
                 letterSpacing: "0.01em",
@@ -93,19 +94,19 @@ export default function TermsPage() {
               flexDirection: "column",
               alignItems: "center",
               padding: "0px",
-              gap: "64px",
-              width: "1320px",
+              gap: "32px",
+              width: "100%",
             }}
           >
             {/* Intro paragraph */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "1320px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
               <p
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontStyle: "normal",
                   fontWeight: 700,
-                  fontSize: "24px",
-                  lineHeight: "38px",
+                  fontSize: "14px",
+                  lineHeight: "22px",
                   color: "#585858",
                   margin: 0,
                 }}
@@ -117,8 +118,8 @@ export default function TermsPage() {
                   fontFamily: "'Poppins', sans-serif",
                   fontStyle: "normal",
                   fontWeight: 400,
-                  fontSize: "24px",
-                  lineHeight: "38px",
+                  fontSize: "15px",
+                  lineHeight: "24px",
                   textAlign: "justify",
                   color: "#585858",
                   margin: 0,
@@ -137,8 +138,8 @@ export default function TermsPage() {
                 flexDirection: "column",
                 alignItems: "flex-start",
                 padding: "0px",
-                gap: "40px",
-                width: "1320px",
+                gap: "24px",
+                width: "100%",
                 alignSelf: "stretch",
               }}
             >
@@ -309,7 +310,7 @@ export default function TermsPage() {
                 alignItems: "flex-start",
                 padding: "0px",
                 gap: "12px",
-                width: "1320px",
+                width: "100%",
               }}
             >
               <p style={S.section}>11. Contact Information</p>
@@ -355,7 +356,7 @@ export default function TermsPage() {
                       fontFamily: "'Poppins', sans-serif",
                       fontStyle: "normal",
                       fontWeight: 500,
-                      fontSize: "28px",
+                      fontSize: "18px",
                       lineHeight: "38px",
                       color: "#585858",
                       textDecoration: "none",
@@ -404,7 +405,7 @@ export default function TermsPage() {
                       fontFamily: "'Poppins', sans-serif",
                       fontStyle: "normal",
                       fontWeight: 500,
-                      fontSize: "28px",
+                      fontSize: "18px",
                       lineHeight: "38px",
                       color: "#585858",
                       textDecoration: "none",
