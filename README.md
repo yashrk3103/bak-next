@@ -4,6 +4,11 @@ Marketing + booking UI for **Zirwa Qurbani Service**, built with Next.js (App Ro
 
 - Live site: https://www.zirwaqurbani.in/
 
+## Branches
+
+- `main` (this branch): UI-only marketing + booking flow (no backend/API routes).
+- `master`: legacy/full version with Supabase + auth/OTP + admin chat (`/chat/[orderId]`) and additional assets/components.
+
 ## Tech Stack
 
 - Next.js `16.1.6` (App Router)
@@ -71,4 +76,3 @@ src/lib/constants.ts  # shared constants (site name/url, WhatsApp number, nav li
 
 - `src/components/home/PackagesSection.tsx` is currently a placeholder (`TODO`).
 - Current repo status (as of this branch): `npm run lint` and `npm run build` report existing issues unrelated to this README change.
-
