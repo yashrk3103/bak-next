@@ -6,16 +6,19 @@ Marketing + booking UI for **Zirwa Qurbani Service**, built with Next.js (App Ro
 
 ## Branches
 
-- `main` (this branch): UI-only marketing + booking flow (no backend/API routes).
-- `master`: legacy/full version with Supabase + auth/OTP + admin chat (`/chat/[orderId]`) and additional assets/components.
+- `main`: UI-only marketing + booking flow (no backend/API routes).
+- `master`: full version with Supabase + auth/OTP helpers + admin chat (`/chat/[orderId]`) and additional assets/components.
 
 ## Tech Stack
 
+Common:
 - Next.js `16.1.6` (App Router)
 - React `19`
 - TypeScript (strict)
 - Tailwind CSS `v4` (via `@tailwindcss/postcss`)
 - ESLint (`eslint-config-next`)
+
+`master` also includes (non-exhaustive): Supabase (`@supabase/ssr`, `@supabase/supabase-js`), shadcn (`components.json`), and jsPDF.
 
 ## Getting Started
 
@@ -37,6 +40,8 @@ npm run start  # start production server (after build)
 npm run lint   # eslint
 ```
 
+Note: `npm run dev` differs by branch (`main`: `next dev`, `master`: `next dev --webpack`).
+
 ## Routes (App Router)
 
 The main UI routes live under `app/`:
@@ -53,6 +58,12 @@ The main UI routes live under `app/`:
 - `/terms` – Terms & conditions (`app/terms/page.tsx`)
 - `/privacy-policy` – Privacy policy (`app/privacy-policy/page.tsx`)
 
+`master` also includes:
+
+- `/chat/[orderId]` – Realtime chat UI (`app/chat/[orderId]/page.tsx`)
+- `/api/auth/send-otp` – OTP helper route (`app/api/auth/send-otp/route.ts`)
+- `/api/auth/verify-otp` – OTP verification route (`app/api/auth/verify-otp/route.ts`)
+
 ## Project Structure
 
 ```text
@@ -64,15 +75,20 @@ src/lib/constants.ts  # shared constants (site name/url, WhatsApp number, nav li
 
 ## Data & State
 
-- This repo is primarily **UI** (no API routes or backend integration present).
-- The checkout flow reads customer details from `localStorage` (set by the order/customer-details panel).
+- `main`: primarily **UI**; the checkout flow reads customer details from `localStorage`.
+- `master`: Supabase integration (auth/session + realtime chat) and in-memory OTP helpers under `app/api/auth/*`.
 
 ## Configuration / Customization
 
 - Update site/links/constants in `src/lib/constants.ts` (notably `SITE_URL` and `WHATSAPP_NUMBER`).
 - Global styling + font imports live in `app/globals.css`.
 
+`master` requires these env vars for Supabase:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
 ## Notes
 
 - `src/components/home/PackagesSection.tsx` is currently a placeholder (`TODO`).
-- Current repo status (as of this branch): `npm run lint` and `npm run build` report existing issues unrelated to this README change.
+- Current status on `main`: `npm run lint` and `npm run build` report existing issues unrelated to this README change.
