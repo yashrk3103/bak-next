@@ -1,4 +1,4 @@
-# bak-next (Zirwa Qurbani Service)
+# (Zirwa Qurbani Service)
 
 Marketing + booking UI for **Zirwa Qurbani Service**, built with Next.js (App Router).
 
